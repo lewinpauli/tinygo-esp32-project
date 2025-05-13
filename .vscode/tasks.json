@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "TinyGo Build & Flash ESP32",
+            "type": "shell",
+            "command": "tinygo flash -target=esp32 -port=${input:serialPort} .",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "serialPort",
+            "type": "promptString",
+            "description": "Serial port for your ESP32",
+            "default": "cu.usbserial-110"  //"/dev/ttyUSB0"
+        }
+    ]
+}
