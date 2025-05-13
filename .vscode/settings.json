@@ -1,0 +1,23 @@
+{
+    "go.toolsEnvVars": {
+        "GOOS": "linux",
+        "GOARCH": "arm",
+        "GOROOT": "/opt/homebrew/Cellar/tinygo/0.37.0/goproot",
+        "GOPATH": "${env:HOME}/go"
+    },
+    "go.alternateTools": {
+        "go": "tinygo"
+    },
+    "go.formatTool": "goimports",
+    "go.lintOnSave": "workspace",
+    "files.associations": {
+        "*.go": "go"
+    },
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "always"
+        }
+    },
+    "go.useLanguageServer": true
+}

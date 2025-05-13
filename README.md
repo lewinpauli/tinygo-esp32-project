@@ -14,7 +14,17 @@ go get
 
 # Update Go modules/dependencies
 go get -u
+
+# Install additional dependencies for ESP32
+brew install esptool
 ```
+
+## Configuration
+
+The project uses an `.env` file to store configuration variables:
+- `TINYGO_TARGET`: Specifies the target board (currently set to `esp32-coreboard-v2`)
+
+You can modify the `.env` file to change the target board without having to update multiple files.
 
 ## Building and Flashing in VS Code
 
@@ -27,11 +37,14 @@ Configuration details are in `.vscode/tasks.json`
 ```bash
 # IMPORTANT: Use the TinyGo compiler, not the standard Go compiler
 
+# Load environment variables
+source .env
+
 # Build your project
-tinygo build -target=esp32-coreboard-v2 -o output.bin main.go
+tinygo build -target=$TINYGO_TARGET -o output.bin main.go
 
 # Flash to your ESP32 device
-tinygo flash -target=esp32-coreboard-v2 -o output.bin main.go
+tinygo flash -target=$TINYGO_TARGET main.go
 ```
 
 ## Device Ports
@@ -44,4 +57,16 @@ Common ESP32 device ports:
 Find your device port on macOS:
 ```bash
 ls /dev/cu.*
+```
+
+## Troubleshooting
+
+If you encounter errors with undefined I2C pin constants like `SCL_PIN` and `SDA_PIN`, you may need to define them in your code:
+
+```go
+// Define global I2C pin constants needed by the machine package
+var (
+    SCL_PIN = machine.GPIO22
+    SDA_PIN = machine.GPIO21
+)
 ```
