@@ -70,3 +70,19 @@ var (
     SDA_PIN = machine.GPIO21
 )
 ```
+
+### Linux Port Permissions
+
+On Linux, you may need to give your user permission to access the serial port:
+
+```bash
+# Replace ttyUSB0 with your actual port
+sudo chmod 777 /dev/ttyUSB0
+```
+
+Alternatively, add your user to the dialout group for permanent access:
+
+```bash
+sudo usermod -a -G dialout $USER
+# Log out and back in for this to take effect
+```

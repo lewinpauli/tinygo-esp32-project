@@ -11,7 +11,7 @@
         {
             "label": "List Serial Ports",
             "type": "shell",
-            "command": "ls -la /dev/cu.*",
+            "command": "ls -la /dev/tty*",
             "problemMatcher": []
         },
         {
@@ -37,7 +37,7 @@
             "id": "serialPort",
             "type": "promptString",
             "description": "Serial port for your ESP32 (without /dev/ prefix)",
-            "default": "cu.usbserial-110"
+            "default": "ttyUSB0"
         }
     ]
 }
