@@ -8,27 +8,42 @@
             "group": "build",
             "problemMatcher": []
         },
+        
         {
             "label": "List Serial Ports",
             "type": "shell",
-            "command": "ls -la /dev/tty*",
+            "command": "ls -la /dev/*",
             "problemMatcher": []
         },
         {
             "label": "TinyGo Flash",
             "type": "shell",
             "command": "source .env && tinygo flash -target=${TINYGO_TARGET} -port=/dev/${input:serialPort} main.go",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": [],
             "dependsOn": ["List Serial Ports"]
         },
         {
-            "label": "TinyGo Monitor",
+            "label": "Screen Monitor",
             "type": "shell",
-            "command": "source .env && tinygo monitor -target=${TINYGO_TARGET} -port=/dev/${input:serialPort}",
+            "command": "screen /dev/${input:serialPort} 115200",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "focus": true
+            },
+            "isBackground": true
+        },
+        {
+            "label": "Flash and Monitor",
+            "dependsOrder": "sequence",
+            "dependsOn": ["TinyGo Flash", "Screen Monitor"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": []
         }
     ],
@@ -37,7 +52,7 @@
             "id": "serialPort",
             "type": "promptString",
             "description": "Serial port for your ESP32 (without /dev/ prefix)",
-            "default": "ttyUSB0"
+            "default": "cu.usbserial-110"
         }
     ]
 }

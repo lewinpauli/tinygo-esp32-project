@@ -8,6 +8,9 @@ brew install go
 brew tap tinygo-org/tools
 brew install tinygo
 
+# Install additional dependencies for ESP32
+brew install esptool
+
 # Install Go modules/dependencies
 go mod tidy
 go get
@@ -15,8 +18,7 @@ go get
 # Update Go modules/dependencies
 go get -u
 
-# Install additional dependencies for ESP32
-brew install esptool
+
 ```
 
 ## Configuration
@@ -57,6 +59,11 @@ Common ESP32 device ports:
 Find your device port on macOS:
 ```bash
 ls /dev/cu.*
+```
+
+Find your device port on Linux:
+```bash
+ls /dev/ttyUSB*
 ```
 
 ## Troubleshooting

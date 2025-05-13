@@ -6,6 +6,8 @@ import (
 	// "fmt" 
 )
 
+// in VSCode: press Ctrl+Shift+B to Build Flash & Monitor ESP32
+
 // how to use :  screen /dev/cu.usbserial-1440 115200   
 
 func getDistanceCm(ultrasonicPin machine.Pin) float32 {
