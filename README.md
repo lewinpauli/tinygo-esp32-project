@@ -47,7 +47,9 @@ tinygo build -target=$TINYGO_TARGET -o output.bin main.go
 
 # Flash to your ESP32 device
 tinygo flash -target=$TINYGO_TARGET main.go
+tinygo flash -target=esp32 blink.go
 ```
+
 
 ## Device Ports
 
